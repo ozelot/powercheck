@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'spec_helper'
 
 describe "Static pages" do
@@ -7,11 +8,11 @@ describe "Static pages" do
   it "should have the right links on the layout" do
     visit root_path
     click_link "About"
-    expect(page).to have_title(full_title('About us'))
+    expect(page).to have_title(full_title('Über uns'))
     click_link "Help"
-    expect(page).to have_title(full_title('Help'))
+    expect(page).to have_title(full_title('Hilfe'))
     click_link "Contact"
-    expect(page).to have_title(full_title('Contact'))
+    expect(page).to have_title(full_title('Kontakt'))
     click_link "Home"
     expect(page).to have_title(full_title('Home'))
     click_link "Comparo"
@@ -29,22 +30,22 @@ describe "Static pages" do
   describe "Help page" do
     before { visit help_path }
 
-    it { should have_content('Help') }
-    it { should have_title(full_title('Help')) }
+    it { should have_content('Hilfe') }
+    it { should have_title(full_title('Hilfe')) }
   end
 
   describe "About page" do
     before { visit about_path }
 
-    it { should have_content('About us') }
-    it { should have_title(full_title('About us')) }
+    it { should have_content('Über uns') }
+    it { should have_title(full_title('Über uns')) }
   end
 
   describe "Contact page" do
     before { visit contact_path }
 
-    it { should have_content('Contact') }
-    it { should have_title(full_title('Contact')) }
+    it { should have_content('Kontakt') }
+    it { should have_title(full_title('Kontakt')) }
   end
 
 end

@@ -16,20 +16,27 @@ describe "User pages" do
   describe "signup page" do
     before { visit signup_path }
 
-    it { should have_content("Signup") }
-    it { should have_title("Signup") }
+    it { should have_content("Registrieren") }
+    it { should have_title("Registrieren") }
   end
 
   describe "signup" do
     
     before { visit signup_path }
     
-    let(:submit) { "Create my account" }
+    let(:submit) { "Email registrieren" }
     
     describe "with invalid information" do
       it "should not create a user" do
         expect { click_button submit }.not_to change(User, :count)
       end
+    end
+
+    describe "after submission" do
+      before { click_button submit }
+      
+      it { should have_title('Registrieren') }
+      it { should have_content('error') }
     end
     
     describe "with valid information" do
