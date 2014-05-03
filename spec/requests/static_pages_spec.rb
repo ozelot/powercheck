@@ -7,11 +7,11 @@ describe "Static pages" do
 
   it "should have the right links on the layout" do
     visit root_path
-    click_link "About"
+    click_link "Über uns"
     expect(page).to have_title(full_title('Über uns'))
-    click_link "Help"
+    click_link "Hilfe"
     expect(page).to have_title(full_title('Hilfe'))
-    click_link "Contact"
+    click_link "Kontakt"
     expect(page).to have_title(full_title('Kontakt'))
     click_link "Home"
     expect(page).to have_title(full_title('Home'))
