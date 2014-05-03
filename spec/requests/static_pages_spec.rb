@@ -15,8 +15,10 @@ describe "Static pages" do
     expect(page).to have_title(full_title('Kontakt'))
     click_link "Home"
     expect(page).to have_title(full_title('Home'))
-    click_link "Comparo"
+    click_link "Power.Check"
     expect(page).to have_title(full_title('Home'))
+    click_link "Registrieren"
+    expect(page).to have_title(full_title('Registrieren'))
   end
 
 
