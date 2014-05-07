@@ -29,13 +29,11 @@ describe "Authentication" do
     describe "with valid information" do
       let(:user) { FactoryGirl.create(:user) }
       before do
-        fill_in "Email",    with: user.email.upcase
-        fill_in "Passwort", with: user.password
-        click_button "Login"
+        sign_in user
+        visit user_path(user)
       end
       
       it { should have_title(user.email) }
-      it { should have_link('Nutzer',       href: users_path) }
       it { should have_link('Profil',            href: user_path(user)) }
       it { should have_link('Einstellungen',     href: edit_user_path(user)) }
       it { should have_link('Logout',            href: signout_path) }
@@ -47,6 +45,7 @@ describe "Authentication" do
       end
     end
   end
+
   describe "authorization" do
     
     describe "for non-signed-in users" do
@@ -82,7 +81,6 @@ describe "Authentication" do
           before { visit users_path }
           it { should have_title('Login') }
         end
-
       end
     end
 
@@ -113,6 +111,33 @@ describe "Authentication" do
         before { delete user_path(user) }
         specify { expect(response).to redirect_to(root_url) }
       end
+
+      describe "accessing index action" do
+        before { get users_path() }
+        specify { expect(response.body).not_to match(full_title('Alle Nutzer')) }
+        specify { expect(response).to redirect_to(root_url) }
+      end
+
+    end
+
+    describe "for signed-in users" do
+      let(:user) { FactoryGirl.create(:user) }
+      before { sign_in user, no_capybara: true }
+      
+      describe "accessing new action" do
+        before { get new_user_path() }
+        specify { expect(response.body).not_to match(full_title('Registrieren')) }
+        specify { expect(response).to redirect_to(root_url) }
+      end
+
+#      describe "accessing create action" do
+#        let(:params) do
+#          { user: { admin: false, password: user.password,
+#              password_confirmation: user.password } }
+#        end
+#        before { patch user_path(user), params}
+#        specify { expect(response).to redirect_to(root_url) }
+#      end
     end
   end
 end
