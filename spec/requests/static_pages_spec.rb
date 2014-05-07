@@ -19,8 +19,18 @@ describe "Static pages" do
     expect(page).to have_title(full_title('Home'))
     click_link "Registrieren"
     expect(page).to have_title(full_title('Registrieren'))
+    click_link "Login"
+    expect(page).to have_title(full_title('Login'))
   end
 
+  it "should not have priviledged user links on the layout" do
+    visit root_path
+    expect(page).to_not have_link "Account"
+    expect(page).to_not have_link "Profil"
+    expect(page).to_not have_link "Einstellungen"
+    expect(page).to_not have_link "Logout"
+    expect(page).to_not have_link "Nutzer"
+  end
 
   describe "Home page" do
     before { visit root_path }
@@ -48,6 +58,14 @@ describe "Static pages" do
 
     it { should have_content('Kontakt') }
     it { should have_title(full_title('Kontakt')) }
+  end
+
+  describe "Login page" do
+    before { visit signin_path }
+
+    it { should have_content('Login') }
+    it { should have_title(full_title('Login')) }
+    it { should have_link "Jetzt registrieren" }
   end
 
 end
