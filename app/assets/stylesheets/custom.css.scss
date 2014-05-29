@@ -83,9 +83,25 @@ p {
 
 /* footer */
 
-footer {
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 40px;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 40px;
+  background-color: $grayMediumLight;
   margin-top: 45px;
-  padding-top: 5px;
+  padding-top: 15px;
   border-top: 1px solid $grayMediumLight;
   color: $grayLight;
   a {
