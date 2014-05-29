@@ -1,11 +1,11 @@
-<% provide(:title, "Prüfbericht anlegen") %>
-<h1>Prüfbericht anlegen</h1>
+<% provide(:title, "Prüfbericht hochladen") %>
+<h1>Prüfbericht hochladen</h1>
 
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@report) do |f| %>
       <%= render 'fields', f: f %>
-      <%= f.submit "Prüfbericht anlegen", class: "btn btn-large btn-primary" %>
+      <%= f.submit "Prüfbericht hochladen", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

@@ -24,7 +24,6 @@ describe "Authentication" do
         before { click_link "Hilfe" }
         it { should_not have_selector('div.alert.alert-error') }
       end
-
     end
 
     describe "with valid information" do
@@ -215,7 +214,7 @@ describe "Authentication" do
         before { sign_in user, no_capybara: true }
         
         describe "accessing the index page" do
-          before { get reports_path(user) }
+          before { get reports_path }
           specify { expect(response.body).to match(full_title('Meine Prüfberichte')) }
         end
         

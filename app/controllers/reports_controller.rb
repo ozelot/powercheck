@@ -1,6 +1,7 @@
+# -*- coding: utf-8 -*-
 class ReportsController < ApplicationController
   before_action :signed_in_user
-  before_action :correct_user,         only: [:show, :create, :edit, :update, :destroy]
+  before_action :correct_report,         only: [:show, :edit, :update, :destroy]
 
   def index
     @reports = Report.where(user: current_user).paginate(page: params[:page])
@@ -11,27 +12,46 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @report = Report.find(params[:id])
   end
 
   def create
+    @report = Report.new(report_params)
+    @report.user = current_user
+    if @report.save
+      flash[:success] = "Prüfbericht angelegt!"
+      redirect_to reports_path
+    else
+      render 'new'
+    end
   end
 
   def edit
-    @report = Report.find(params[:id])
   end
 
   def update
+    if @report.update_attributes(report_params)
+      flash[:success] = "Änderungen gespeichert."
+      redirect_to reports_path
+    else
+      render 'edit'
+    end
   end
 
   def destroy
   end
 
+
+  private
+
+  def report_params
+    params.require(:report).permit(:summary)
+  end
+
     # Before filters
 
-    def correct_user
-      @user = Report.find(params[:id]).user
-      redirect_to root_url unless current_user?(@user)
+    def correct_report
+      @report = Report.find(params[:id])
+      redirect_to root_url unless current_user?(@report.user)
     end
 
 end
