@@ -135,4 +135,28 @@ describe User do
       specify { expect(user_for_invalid_password).to be_false }
     end
   end
+
+ describe "report associations" do
+
+    before { @user.save }
+    let!(:older_report) do
+      FactoryGirl.create(:report, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_report) do
+      FactoryGirl.create(:report, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right reports in the right order" do
+      expect(@user.reports.to_a).to eq [newer_report, older_report]
+    end
+
+    it "should destroy associated report" do
+      reports = @user.reports.to_a
+      @user.destroy
+      expect(reports).not_to be_empty
+      reports.each do |report|
+        expect(Report.where(id: report.id)).to be_empty
+      end
+    end
+  end
 end

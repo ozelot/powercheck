@@ -13,8 +13,6 @@ describe "Static pages" do
     expect(page).to have_title(full_title('Hilfe'))
     click_link "Kontakt"
     expect(page).to have_title(full_title('Kontakt'))
-    click_link "Home"
-    expect(page).to have_title(full_title('Home'))
     click_link "Power.Check"
     expect(page).to have_title(full_title('Home'))
     click_link "Registrieren"
@@ -30,12 +28,12 @@ describe "Static pages" do
     expect(page).to_not have_link "Einstellungen"
     expect(page).to_not have_link "Logout"
     expect(page).to_not have_link "Nutzer"
+    expect(page).to_not have_link "Prüfberichte"
   end
 
   describe "Home page" do
     before { visit root_path }
 
-    it { should have_content('Home') }
     it { should have_title(full_title('Home')) }
   end
 

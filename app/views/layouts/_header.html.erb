@@ -4,12 +4,11 @@
       <%= link_to "Power.Check", root_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
-          <li><%= link_to "Home", root_path %></li>
-          <li><%= link_to "Hilfe", help_path %></li>
 	  <% if signed_in? %>
 	    <% if current_user.admin? %>
               <li><%= link_to "Nutzer", users_path %></li>
 	    <% end %>
+          <li><%= link_to "Prüfberichte", reports_path %></li>
           <li id="fat-menu" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>
