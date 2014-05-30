@@ -38,7 +38,6 @@ describe "User pages" do
     #    end
   end
 
-
   # Dont know how to fix this at the moment.
   #
   #  describe "delete links" do

@@ -2,13 +2,13 @@
 require 'spec_helper'
 
 describe "Report pages" do
-  let(:user) { FactoryGirl.create(:user_with_reports) }
-  let(:wrong_user) { FactoryGirl.create(:user_with_reports, email: "wrong@example.com") }
-  before { sign_in user }
 
   subject { page }
   
   describe "creating a new report" do
+    let(:user) { FactoryGirl.create(:user_with_reports) }
+    let(:wrong_user) { FactoryGirl.create(:user_with_reports, email: "wrong@example.com") }
+    before { sign_in user }
     before { visit new_report_path }
     
     let(:submit) {'Prüfbericht hochladen'}
@@ -49,6 +49,7 @@ describe "Report pages" do
 
   describe "updating a report" do
     let(:user) { FactoryGirl.create(:user_with_reports) }
+    let(:wrong_user) { FactoryGirl.create(:user_with_reports, email: "wrong@example.com") }
     before do
       sign_in user
       visit edit_report_path(user.reports.first)
@@ -88,7 +89,6 @@ describe "Report pages" do
     end
 
     describe "forbidden attributes" do
-      let(:wrong_user) { FactoryGirl.create(:user_with_reports) }
       let(:params) do
         { report: { user: wrong_user } }
       end
@@ -97,9 +97,22 @@ describe "Report pages" do
         sign_in user, no_capybara: true
         patch report_path(user.reports.first), params
       end
+
       specify { expect(user.reports.first.user.reload).not_to eq wrong_user }
     end
   end
 
-
+  describe "deleting a report" do
+    let(:user) { FactoryGirl.create(:user_with_reports) }
+    let(:wrong_user) { FactoryGirl.create(:user_with_reports, email: "wrong@example.com") }
+    before { sign_in user, no_capybara: true }
+    
+    describe "which belongs to a different user" do      
+      specify{ expect { delete report_path(wrong_user.reports.first) }.not_to change(Report, :count)}
+    end
+    
+    describe "which belongs to the correct user" do
+      specify{ expect { delete report_path(user.reports.first) }.to change(Report, :count).by(-1)}
+    end
+  end
 end

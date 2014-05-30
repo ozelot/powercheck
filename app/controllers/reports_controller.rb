@@ -38,8 +38,10 @@ class ReportsController < ApplicationController
   end
 
   def destroy
+    @report.destroy
+    flash[:success] = "Prüfbericht wurde gelöscht."
+    redirect_to reports_url
   end
-
 
   private
 
