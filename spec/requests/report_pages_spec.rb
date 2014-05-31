@@ -105,13 +105,14 @@ describe "Report pages" do
   describe "deleting a report" do
     let(:user) { FactoryGirl.create(:user_with_reports) }
     let(:wrong_user) { FactoryGirl.create(:user_with_reports, email: "wrong@example.com") }
-    before { sign_in user, no_capybara: true }
     
     describe "which belongs to a different user" do      
-      specify{ expect { delete report_path(wrong_user.reports.first) }.not_to change(Report, :count)}
+      before { sign_in user, no_capybara: true }
+      specify{ expect { delete report_path(wrong_user.reports.first) }.not_to change(Report, :count).by(-1)}
     end
     
     describe "which belongs to the correct user" do
+      before { sign_in user, no_capybara: true }
       specify{ expect { delete report_path(user.reports.first) }.to change(Report, :count).by(-1)}
     end
   end
