@@ -46,7 +46,7 @@ class ReportsController < ApplicationController
   private
 
   def report_params
-    params.require(:report).permit(:summary)
+    params.require(:report).permit(:summary, :report_file)
   end
 
     # Before filters

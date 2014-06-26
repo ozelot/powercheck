@@ -1,3 +1,5 @@
+include ActionDispatch::TestProcess
+
 FactoryGirl.define do
   
   factory :user do
@@ -22,6 +24,8 @@ FactoryGirl.define do
 
   factory :report do
     summary "Test passed."
+    user = user
+    report_file { fixture_file_upload('test.xml', 'text/xml') }
     user
   end
 

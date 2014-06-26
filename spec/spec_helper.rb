@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'spork'
+require 'paperclip/matchers'
 
 Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
@@ -42,7 +43,21 @@ Spork.prefork do
     # the seed, which is printed after each run.
     #     --seed 1234
     config.order = "random"
+
+    # Capybara DSL is used for integration testing
     config.include Capybara::DSL
+
+    # Include matchers to test paperclip validations
+    config.include Paperclip::Shoulda::Matchers
+
+    # Remove folder for temporary test files
+    config.after(:suite) do
+      FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])
+    end
+
+    # Include assertion functions
+    config.include ActiveSupport::Testing::Assertions
+
   end
 end
 

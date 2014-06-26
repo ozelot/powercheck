@@ -5,7 +5,9 @@
   <div class="span6 offset3">
     <%= form_for(@report) do |f| %>
       <%= render 'fields', f: f %>
-      <%= f.submit "Prüfbericht hochladen", class: "btn btn-primary" %>
-    <% end %>
+      <div class="form-actions">
+	<%= f.submit "Prüfbericht hochladen", class: "btn btn-primary" %>
+      </div>
+      <% end %>
   </div>
 </div>
