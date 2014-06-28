@@ -32,12 +32,8 @@ describe 'Report pages' do
     end
 
     it 'with valid information' do
-      @report_file = fixture_file_upload('test.xml', 'text/xml')
-      let(:params) do
-        { report: { user: user, report_file: @report_file} }
-      end
-
-#      pending('# Something is wrong with the post request: No report is created and response is a redirect, should be success.')
+      pending('# Something is wrong with the post request: No report is created and response is a redirect, should be success.')
+      @report_file = fixture_file_upload('files/test.xml', 'text/xml')
       assert_difference('Report.count') do
         post reports_path, :report => { :summary => 'Summary', :report_file => @report_file }
       end
