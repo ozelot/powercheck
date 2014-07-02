@@ -216,21 +216,5 @@ describe 'Authentication' do
         specify { expect(response.body).to match(full_title('Gerätedetails anzeigen')) }
       end
     end
-
-    describe 'in the imports controller' do
-      let(:user) { FactoryGirl.create(:user_with_imports) }
-      let(:wrong_user) { FactoryGirl.create(:user_with_imports, email: 'wrong@example.com') }
-      before { sign_in user, no_capybara: true }
-
-      describe 'accessing the index page' do
-        before { get imports_path }
-        specify { expect(response.body).to match(full_title('Meine Prüfberichte')) }
-      end
-
-      describe 'accessing the show page of a device' do
-        before { get import_path(user.imports.first) }
-        specify { expect(response.body).to match(full_title('Prüfbericht anzeigen')) }
-      end
-    end
   end
 end

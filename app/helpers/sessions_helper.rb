@@ -50,4 +50,15 @@ module SessionsHelper
     session[:return_to] = request.url if request.get?
   end
 
+  # Shared before filters
+
+  def admin_user
+    if signed_in?
+      redirect_to root_url unless current_user.admin?
+    else
+      redirect_to signin_url
+    end
+  end
+
+
 end

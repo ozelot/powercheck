@@ -1,5 +1,5 @@
 class ImportsController < ApplicationController
-  before_action :signed_in_user
+  before_action :admin_user
   before_action :correct_import, only: [:show, :destroy]
 
   def index

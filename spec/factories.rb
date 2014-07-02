@@ -7,7 +7,7 @@ FactoryGirl.define do
     password "foobar"
     password_confirmation "foobar"
     
-    factory :admin do
+    trait :admin do
       admin true
     end
 

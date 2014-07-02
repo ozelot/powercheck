@@ -55,14 +55,6 @@ class UsersController < ApplicationController
 
     # Before filters
 
-    def admin_user
-      if signed_in?
-        redirect_to root_url unless current_user.admin?
-      else
-        redirect_to signin_url
-      end
-    end
-
     def not_signed_in_user
       redirect_to root_url if signed_in?
     end

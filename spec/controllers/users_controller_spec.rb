@@ -176,7 +176,7 @@ describe UsersController do
 
   describe 'as an admin user' do
 
-    let(:admin) { FactoryGirl.create(:admin) }
+    let(:admin) { FactoryGirl.create(:user,:admin) }
     # Use ! for not lazy evaluation
     let!(:user) { FactoryGirl.create(:user) }
     before { sign_in admin, no_capybara: true }
