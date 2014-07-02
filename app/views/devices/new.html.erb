@@ -1,0 +1,13 @@
+<% provide(:title, "Prüfbericht hochladen") %>
+<h1>Prüfbericht hochladen</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@device) do |f| %>
+      <%= render 'fields', f: f %>
+      <div class="form-actions">
+	<%= f.submit "Gerät anlegen", class: "btn btn-primary" %>
+      </div>
+      <% end %>
+  </div>
+</div>

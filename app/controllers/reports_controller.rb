@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 class ReportsController < ApplicationController
   before_action :signed_in_user
-  before_action :correct_report,         only: [:show, :edit, :update, :destroy]
+  before_action :correct_report, only: [:show, :destroy]
 
   def index
     @reports = Report.where(user: current_user).paginate(page: params[:page])
@@ -46,14 +45,13 @@ class ReportsController < ApplicationController
   private
 
   def report_params
-    params.require(:report).permit(:summary, :report_file)
+    params.require(:report).permit(:report_file)
   end
 
     # Before filters
 
     def correct_report
-      @report = Report.find(params[:id])
-      redirect_to root_url unless current_user?(@report.user)
+      @report = Report.find_by_id(params[:id])
+      redirect_to root_url unless @report != nil && current_user?(@report.user)
     end
-
 end

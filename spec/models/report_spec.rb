@@ -3,13 +3,17 @@ require 'spec_helper'
 describe Report do
 
   let(:user) { FactoryGirl.create(:user) }
-  let(:report) { FactoryGirl.create(:report, :user => user) }
+  let(:device) { FactoryGirl.create(:device, :user => user) }
+  let(:report) { FactoryGirl.create(:report, :device => device, :user => user) }
 
   subject {report}
-  
-  it { should respond_to(:summary) }
-  it { should respond_to(:user_id) }
+
+  it { should respond_to(:device) }
+  it { should respond_to(:device_id) }
   it { should respond_to(:user) }
+  it { should respond_to(:user_id) }
+  it { should respond_to(:report_file) }
+  its(:device) { should eq device }
   its(:user) { should eq user }
 
   it { should validate_attachment_content_type(:report_file)
@@ -20,18 +24,13 @@ describe Report do
 
   it { should be_valid }
 
+  describe "when device_id is not present" do
+    before { report.device_id = nil }
+    it { should_not be_valid }
+  end
+
   describe "when user_id is not present" do
     before { report.user_id = nil }
-    it { should_not be_valid }
-  end
-
-  describe "with blank content" do
-    before { report.summary = " " }
-    it { should_not be_valid }
-  end
-
-  describe "with content that is too long" do
-    before { report.summary = "a" * 501 }
     it { should_not be_valid }
   end
 

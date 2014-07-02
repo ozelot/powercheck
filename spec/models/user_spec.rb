@@ -136,26 +136,26 @@ describe User do
     end
   end
 
- describe "report associations" do
+ describe "device associations" do
 
     before { @user.save }
-    let!(:older_report) do
-      FactoryGirl.create(:report, user: @user, created_at: 1.day.ago)
+    let!(:older_device) do
+      FactoryGirl.create(:device, user: @user, created_at: 1.day.ago)
     end
-    let!(:newer_report) do
-      FactoryGirl.create(:report, user: @user, created_at: 1.hour.ago)
-    end
-
-    it "should have the right reports in the right order" do
-      expect(@user.reports.to_a).to eq [newer_report, older_report]
+    let!(:newer_device) do
+      FactoryGirl.create(:device, user: @user, created_at: 1.hour.ago)
     end
 
-    it "should destroy associated report" do
-      reports = @user.reports.to_a
+    it "should have the right devices in the right order" do
+      expect(@user.devices.to_a).to eq [newer_device, older_device]
+    end
+
+    it "should destroy associated device" do
+      devices = @user.devices.to_a
       @user.destroy
-      expect(reports).not_to be_empty
-      reports.each do |report|
-        expect(Report.where(id: report.id)).to be_empty
+      expect(devices).not_to be_empty
+      devices.each do |device|
+        expect(Device.where(id: device.id)).to be_empty
       end
     end
   end

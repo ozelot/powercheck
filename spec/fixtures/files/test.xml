@@ -1,5 +1,23 @@
 <xml>
   <test>
-    Testcase 1
+    <device>
+      <id>
+        123
+      </id>
+      <name>
+        WMF Kaffeeautomat
+      </name>
+    </device>
+    <report>
+      <id>
+        123
+      </id>
+      <date>
+        25.6.2014
+      </date>
+      <result>
+        OK
+      </result>
+    </report>
   </test>
 </xml>
