@@ -1,8 +1,10 @@
 Matrix::Application.routes.draw do
-  resources :users
+
   resources :sessions, only: [:new, :create, :destroy]
+
+  resources :users
   resources :devices
-  resources :reports
+  resources :imports
 
   root 'static_pages#home'
   

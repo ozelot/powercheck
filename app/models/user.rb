@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }
   has_many :devices, dependent: :destroy
-  has_many :reports
+  has_many :imports
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64

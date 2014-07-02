@@ -1,0 +1,14 @@
+<% provide(:title, 'Meine Imports') %>
+
+<%= link_to "Import hochladen", new_import_path, class: "btn btn-primary pull-right" %>
+
+<h1>Meine Imports</h1>
+
+
+<%= will_paginate %>
+
+<ul class="paginationlist">
+  <%= render @imports %>
+</ul>
+
+<%= will_paginate %>

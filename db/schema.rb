@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140628112023) do
+ActiveRecord::Schema.define(version: 20140702104029) do
 
   create_table "devices", force: true do |t|
     t.string   "name"
@@ -20,14 +20,14 @@ ActiveRecord::Schema.define(version: 20140628112023) do
     t.integer  "user_id"
   end
 
-  create_table "reports", force: true do |t|
+  create_table "imports", force: true do |t|
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "report_file_file_name"
-    t.string   "report_file_content_type"
-    t.integer  "report_file_file_size"
-    t.datetime "report_file_updated_at"
+    t.string   "import_file_file_name"
+    t.string   "import_file_content_type"
+    t.integer  "import_file_file_size"
+    t.datetime "import_file_updated_at"
     t.integer  "device_id"
   end
 

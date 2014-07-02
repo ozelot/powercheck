@@ -1,9 +1,9 @@
-<% provide(:title, "Prüfbericht anpassen") %>
-<h1>Prüfbericht anpassen</h1>
+<% provide(:title, "Import anpassen") %>
+<h1>Import anpassen</h1>
 
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(@report) do |f| %>
+    <%= form_for(@imports) do |f| %>
       <%= render 'fields', f: f %>
       <%= f.submit "Speichern", class: "btn btn-primary" %>
     <% end %>

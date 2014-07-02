@@ -1,0 +1,13 @@
+<% provide(:title, "Import hochladen") %>
+<h1>Import hochladen</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@imports) do |f| %>
+      <%= render 'fields', f: f %>
+      <div class="form-actions">
+	<%= f.submit "Import hochladen", class: "btn btn-primary" %>
+      </div>
+      <% end %>
+  </div>
+</div>

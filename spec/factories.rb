@@ -11,13 +11,13 @@ FactoryGirl.define do
       admin true
     end
 
-    factory :user_with_reports do
+    factory :user_with_imports do
       # the after(:create) yields two values; the user instance itself and the
       # evaluator, which stores all values from the factory, including transient
       # attributes; `create_list`'s second argument is the number of records
-      # to create and we make sure the user is associated properly to the report
+      # to create and we make sure the user is associated properly to the imports
       after(:create) do |user|
-        create_list(:report, 2, user: user)
+        create_list(:import, 2, user: user)
       end
     end
 
@@ -27,9 +27,9 @@ FactoryGirl.define do
       end
     end
 
-    factory :user_with_devices_and_reports do
+    factory :user_with_devices_and_imports do
       after(:create) do |user|
-        create_list(:device_with_reports, 2, user: user)
+        create_list(:device_with_imports, 2, user: user)
       end
     end
   end
@@ -37,17 +37,17 @@ FactoryGirl.define do
   factory :device do
     user
 
-    factory :device_with_reports do
+    factory :device_with_imports do
       after(:create) do |device|
-        create_list(:report, 2, device: device)
+        create_list(:import, 2, device: device)
       end
     end
   end
 
-  factory :report do
+  factory :import do
     user
     device
-    report_file { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'files', 'test.xml'), 'text/xml') }
+    import_file { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'files', 'test.xml'), 'text/xml') }
   end
 
 end

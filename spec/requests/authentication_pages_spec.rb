@@ -37,7 +37,7 @@ describe 'Authentication' do
       it { should have_link('Profil',            href: user_path(user)) }
       it { should have_link('Einstellungen',     href: edit_user_path(user)) }
       it { should have_link('Logout',            href: signout_path) }
-      it { should have_link('Prüfberichte',      href: reports_path) }
+      it { should have_link('Imports',      href: imports_path) }
       it { should_not have_link('Login',         href: signin_path) }
 
       describe 'followed by signout' do
@@ -51,7 +51,7 @@ describe 'Authentication' do
 
     describe 'for non-signed-in users' do
       let(:user) { FactoryGirl.create(:user) }
-      let(:user_with_reports) { FactoryGirl.create(:user_with_reports, email: 'user_with_reports@example.com') }
+      let(:user_with_imports) { FactoryGirl.create(:user_with_imports, email: 'user_with_imports@example.com') }
       let(:user_with_devices) { FactoryGirl.create(:user_with_devices, email: 'user_with_devices@example.com') }
 
       describe 'in the Users controller' do
@@ -72,32 +72,32 @@ describe 'Authentication' do
         end
       end
 
-      describe 'in the Reports controller' do
+      describe 'in the imports controller' do
 
-        let(:user) { FactoryGirl.create(:user_with_reports) }
+        let(:user) { FactoryGirl.create(:user_with_imports) }
 
         describe 'accessing the new action' do
-          before { get new_report_path }
+          before { get new_import_path }
           it {should redirect_to(signin_path) }
         end
 
         describe 'accessing the show action' do
-          before { get report_path(user.reports.first) }
+          before { get import_path(user.imports.first) }
           it {should redirect_to(signin_path) }
         end
 
         describe 'accessing the index action' do
-          before { get reports_path(user) }
+          before { get imports_path(user) }
           it {should redirect_to(signin_path) }
         end
 
         describe 'submitting to the create action via post' do
-          before { post reports_path }
+          before { post imports_path }
           it {should redirect_to(signin_path) }
         end
 
         describe 'submitting to the destroy action via delete' do
-          before { delete report_path(user.reports.first) }
+          before { delete import_path(user.imports.first) }
           it {should redirect_to(signin_path) }
         end
       end
@@ -217,18 +217,18 @@ describe 'Authentication' do
       end
     end
 
-    describe 'in the Reports controller' do
-      let(:user) { FactoryGirl.create(:user_with_reports) }
-      let(:wrong_user) { FactoryGirl.create(:user_with_reports, email: 'wrong@example.com') }
+    describe 'in the imports controller' do
+      let(:user) { FactoryGirl.create(:user_with_imports) }
+      let(:wrong_user) { FactoryGirl.create(:user_with_imports, email: 'wrong@example.com') }
       before { sign_in user, no_capybara: true }
 
       describe 'accessing the index page' do
-        before { get reports_path }
+        before { get imports_path }
         specify { expect(response.body).to match(full_title('Meine Prüfberichte')) }
       end
 
       describe 'accessing the show page of a device' do
-        before { get report_path(user.reports.first) }
+        before { get import_path(user.imports.first) }
         specify { expect(response.body).to match(full_title('Prüfbericht anzeigen')) }
       end
     end

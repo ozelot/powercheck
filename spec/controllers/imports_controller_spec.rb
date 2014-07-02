@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe ReportsController do
+describe ImportsController do
 
   subject { page }
 
   describe 'as guest user' do
 
-    let(:report) { FactoryGirl.create(:report) }
+    let(:imports) { FactoryGirl.create(:import) }
 
     describe 'GET index' do
       it 'redirects to signin url' do
@@ -17,7 +17,7 @@ describe ReportsController do
 
     describe 'POST create' do
       it 'redirects to the signin url' do
-        post :create, report: FactoryGirl.attributes_for(:report)
+        post :create, import: FactoryGirl.attributes_for(:import)
         response.should redirect_to(signin_url)
       end
     end
@@ -31,14 +31,14 @@ describe ReportsController do
 
     describe 'GET show' do
       it 'redirects to the signin url' do
-        get :show, id: report
+        get :show, id: imports
         response.should redirect_to(signin_url)
       end
     end
 
     describe 'DELETE destroy' do
       it 'redirects to the signin url' do
-        delete :destroy, id: report
+        delete :destroy, id: imports
         response.should redirect_to(signin_url)
       end
     end
@@ -48,7 +48,7 @@ describe ReportsController do
 
     let!(:user) { FactoryGirl.create(:user) }
     let!(:device) { FactoryGirl.create(:device, user: user) }
-    let!(:report) { FactoryGirl.create(:report, device: device, user: user) }
+    let!(:import) { FactoryGirl.create(:import, device: device, user: user) }
 
     before { sign_in user, no_capybara: true }
 
@@ -60,10 +60,10 @@ describe ReportsController do
     end
 
     describe 'POST create' do
-      it 'redirects to the reports index page' do
-        pending('Nested attributes for report not set - not accepted by controller')
-        post :create, report: FactoryGirl.attributes_for(:report)
-        response.should redirect_to(reports_url)
+      it 'redirects to the Imports index page' do
+        pending('Nested attributes for imports not set - not accepted by controller')
+        post :create, import: FactoryGirl.attributes_for(:import)
+        response.should redirect_to(imports_url)
       end
     end
 
@@ -76,26 +76,26 @@ describe ReportsController do
 
     describe 'GET show' do
       it 'renders the show template' do
-        get :show, id: Report.where(user: user).first
+        get :show, id: Import.where(user: user).first
         response.should render_template('show')
       end
     end
 
     describe 'DELETE destroy' do
       it 'redirects to the signin url' do
-        delete :destroy, id: Report.where(user: user).first
-        response.should redirect_to(reports_url)
+        delete :destroy, id: Import.where(user: user).first
+        response.should redirect_to(imports_url)
       end
     end
 
-    describe 'GET show of another users report' do
+    describe 'GET show of another users imports' do
 
       let!(:wrong_user) { FactoryGirl.create(:user) }
       let!(:wrong_device) { FactoryGirl.create(:device, user: wrong_user) }
-      let!(:wrong_report) { FactoryGirl.create(:report, device: wrong_device, user: wrong_user) }
+      let!(:wrong_import) { FactoryGirl.create(:import, device: wrong_device, user: wrong_user) }
 
       it 'redirects to the root url' do
-        get :show, id: Report.where(user: wrong_user).first
+        get :show, id: Import.where(user: wrong_user).first
         response.should redirect_to(root_url)
       end
     end
