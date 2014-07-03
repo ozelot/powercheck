@@ -12,6 +12,8 @@ describe "Static pages" do
     expect(page).to have_title(full_title('Hilfe'))
     click_link "Kontakt"
     expect(page).to have_title(full_title('Kontakt'))
+    click_link "Impressum"
+    expect(page).to have_title(full_title('Impressum'))
     click_link "Power.Check"
     expect(page).to have_title(full_title('Home'))
     click_link "Registrieren"
@@ -28,6 +30,7 @@ describe "Static pages" do
     expect(page).to_not have_link "Logout"
     expect(page).to_not have_link "Nutzer"
     expect(page).to_not have_link "Prüfberichte"
+    expect(page).to_not have_link "Imports"
   end
 
   describe "Home page" do
@@ -50,6 +53,13 @@ describe "Static pages" do
     it { should have_title(full_title('Über uns')) }
   end
 
+  describe "Imprint page" do
+    before { visit imprint_path }
+
+    it { should have_content('Impressum') }
+    it { should have_title(full_title('Impressum')) }
+  end
+
   describe "Contact page" do
     before { visit contact_path }
 
@@ -64,5 +74,4 @@ describe "Static pages" do
     it { should have_title(full_title('Login')) }
     it { should have_link "Jetzt registrieren" }
   end
-
 end
