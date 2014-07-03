@@ -6,6 +6,8 @@ describe "Static pages" do
 
   it "should have the right links on the layout" do
     visit root_path
+    click_link "Warum Power.Check?"
+    expect(page).to have_title(full_title('Vorteile'))
     click_link "Über uns"
     expect(page).to have_title(full_title('Über uns'))
     click_link "Hilfe"
@@ -44,6 +46,12 @@ describe "Static pages" do
 
     it { should have_content('Hilfe') }
     it { should have_title(full_title('Hilfe')) }
+  end
+
+  describe "Advantages page" do
+    before { visit advantages_path }
+
+    it { should have_title(full_title('Vorteile')) }
   end
 
   describe "About page" do

@@ -1,8 +1,30 @@
 <% provide :title,'Home' %>
 <div class="center hero-unit">
-  <p>
-    Wilkommen bei Power.Check, der Plattform rund um Ihre BVG A3 Prüfungen.
-  </p>
+  <div id="wrapper">
+    <div class="slider-wrapper theme-default">
+      <div class="ribbon"></div>
+      <div id="slider" class="ramblingSlider adaptingSlider">
+        <%= image_tag('slide1.png', alt: '') %>
+        <%= image_tag('slide2.png', alt: '') %>
+        <%= image_tag('slide3.png', alt: '') %>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+    $(window).load(function() {
+        $('#slider').ramblingSlider({
+            effect: 'slideInRight',
+            prevText: 'Prev',
+            nextText: 'Next',
+            animSpeed: 500,
+            pauseTime: 10000,
+            useLargerImage: true
+        });
+    });
+</script>
+
+<div class="center hero-unit">
 
   <%= link_to "Registrieren", signup_path, class: "btn btn-large btn-primary" %>
 </div>

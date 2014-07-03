@@ -8,7 +8,6 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
-
 gem 'sass-rails', '4.0.0'
 gem 'uglifier', '2.1.1'
 gem 'coffee-rails', '4.0.0'
@@ -18,7 +17,7 @@ gem 'jbuilder', '1.0.2'
 gem 'therubyracer'
 gem 'paperclip', '~> 4.1'
 gem 'nokogiri'
-
+gem 'rambling-slider-rails'
 
 group :development, :test do
   gem 'sqlite3', '1.3.7'

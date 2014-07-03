@@ -37,7 +37,6 @@ describe 'Authentication' do
       it { should have_link('Profil',            href: user_path(user)) }
       it { should have_link('Einstellungen',     href: edit_user_path(user)) }
       it { should have_link('Logout',            href: signout_path) }
-      it { should have_link('Imports',      href: imports_path) }
       it { should_not have_link('Login',         href: signin_path) }
 
       describe 'followed by signout' do
