@@ -66,10 +66,10 @@ describe 'Imports pages' do
     describe 'edit a import' do
       before { visit edit_import_path(user.imports.first) }
 
-      let(:submit) {'Import hochladen'}
+      let(:submit) {'Import anpassen'}
 
       describe 'page' do
-        it { should have_title(full_title('Import hochladen')) }
+        it { should have_title(full_title('Import anpassen')) }
         it { should have_button(submit) }
       end
     end
