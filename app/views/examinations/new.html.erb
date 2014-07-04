@@ -4,6 +4,8 @@
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@examination) do |f| %>
+      <%= label_tag(:device_string,'DeviceID' ) %>
+      <%= text_field_tag(:device_string, params[:device_string]) %>
       <%= render 'fields', f: f %>
       <div class="form-actions">
 	<%= f.submit "Prüfbericht anlegen", class: "btn btn-primary" %>

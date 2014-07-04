@@ -1,3 +1,3 @@
 <li>
-  <%= link_to examination.id, examination %> | <%= link_to "Löschen", examination, method: :delete, data: { confirm: "Wirklich löschen?" } %>
+  PrüfID: <%= link_to examination.id, examination %> | GeräteID: <%= link_to examination.device_id, examination.device %> | <%= link_to "Löschen", examination, method: :delete, data: { confirm: "Wirklich löschen?" } %>
 </li>

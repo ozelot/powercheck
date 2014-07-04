@@ -12,10 +12,14 @@ class ExaminationsController < ApplicationController
   end
 
   def show
+    @examination = Examination.find(params[:id])
+    @device = Device.find(@examination.device)
   end
 
   def create
     @examination = Examination.new(examination_params)
+    @examination.user = current_user
+    @examination.device = Device.find_by_id(params[:device_string])
     if @examination.save
       flash[:success] = "Prüfung angelegt!"
       redirect_to examinations_path
@@ -45,17 +49,14 @@ class ExaminationsController < ApplicationController
   private
 
   def examination_params
-    params.require(:examination).permit(:device, :result, :date)
+    params.require(:examination).permit(:device_string, :result, :date)
   end
 
   # Before filters
 
   def correct_examination
     @examination = Examination.find(params[:id])
-    @device = Device.where(id: @examination.device_id)
-    @user = User.where(id: @device.user_id)
+    @user = User.find_by_id(@examination.user_id)
     redirect_to root_url unless current_user?(@user)
   end
-
-
 end

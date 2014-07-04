@@ -1,1 +1,28 @@
-<% provide(:title, "Prüfbericht anzeigen") %>
+<% provide(:title, "Prüfbericht Details") %>
+
+<h2>Prüfbericht</h2>
+
+<p>
+  Prüfdatum:  <%= @examination.date %>
+</p>
+<p>
+  Ergebnis:  <%= @examination.result %>
+</p>
+<p>
+  Geräteart:  <%= @device.kind %>
+</p>
+<p>
+  Standort:  <%= @device.location%>
+</p>
+<p>
+  Hersteller:  <%= @device.vendor %>
+</p>
+<p>
+  Typ:    <%= @device.type_no%>
+</p>
+<p>
+  Seriennummer:  <%= @device.serial_no%>
+</p>
+
+<%= link_to "Gerät anpassen", edit_device_path(@device), class: "btn btn-primary pull-right" %>
+
