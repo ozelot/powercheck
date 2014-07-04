@@ -1,0 +1,13 @@
+<% provide(:title, "Prüfbericht anlegen") %>
+<h1>Prüfbericht anlegen</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@examination) do |f| %>
+      <%= render 'fields', f: f %>
+      <div class="form-actions">
+	<%= f.submit "Prüfbericht anlegen", class: "btn btn-primary" %>
+      </div>
+      <% end %>
+  </div>
+</div>

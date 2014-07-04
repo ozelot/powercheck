@@ -1,6 +1,4 @@
-<% provide(:title, 'Meine Prüfberichte') %>
-
-<%= link_to "Gerät anlegen", new_device_path, class: "btn btn-primary pull-right" %>
+<% provide(:title, 'Meine Geräte') %>
 
 <h1>Meine Geräte</h1>
 
@@ -12,3 +10,5 @@
 </ul>
 
 <%= will_paginate %>
+
+<%= link_to "Neues Gerät anlegen", new_device_path(), class: "btn btn-primary pull-right" %>

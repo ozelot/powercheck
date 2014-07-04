@@ -1,9 +1,9 @@
-<% provide(:title, "Gerät anpassen") %>
-<h1>Gerät anpassen</h1>
+<% provide(:title, "Prüfbericht anpassen") %>
+<h1>Prüfbericht anpassen</h1>
 
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(@device) do |f| %>
+    <%= form_for(@examination) do |f| %>
       <%= render 'fields', f: f %>
       <%= f.submit "Speichern", class: "btn btn-primary" %>
     <% end %>

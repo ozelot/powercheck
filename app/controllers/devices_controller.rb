@@ -45,7 +45,7 @@ class DevicesController < ApplicationController
   private
 
   def device_params
-    params.require(:device).permit()
+    params.require(:device).permit(:inventory_no, :serial_no, :location, :kind, :type, :vendor)
   end
 
   # Before filters

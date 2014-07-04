@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702104029) do
+ActiveRecord::Schema.define(version: 20140704084325) do
 
   create_table "devices", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "inventory_no"
+    t.string   "serial_no"
+    t.string   "location"
+    t.string   "kind"
+    t.string   "type_no"
+    t.string   "vendor"
+  end
+
+  create_table "examinations", force: true do |t|
+    t.integer  "device_id"
+    t.boolean  "result"
+    t.datetime "date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"

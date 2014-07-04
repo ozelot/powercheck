@@ -5,6 +5,7 @@ Matrix::Application.routes.draw do
   resources :users
   resources :devices
   resources :imports
+  resources :examinations
 
   root 'static_pages#home'
 

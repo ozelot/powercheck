@@ -1,1 +1,24 @@
-<% provide(:title, "Gerätedetails anzeigen") %>
+<% provide(:title, "Gerätedetails") %>
+
+<h2>Gerätedetails</h2>
+
+<p>
+  Inventarnummer:  <%= @device.inventory_no %>
+</p>
+<p>
+    Geräteart:  <%= @device.kind %>
+</p>
+<p>
+    Standort:  <%= @device.location%>
+</p>
+<p>
+    Hersteller:  <%= @device.vendor %>
+</p>
+<p>
+  Typ:    <%= @device.type_no%>
+</p>
+<p>
+  Seriennummer:  <%= @device.serial_no%>
+</p>
+
+<%= link_to "Gerät anpassen", edit_device_path(@device), class: "btn btn-primary pull-right" %>

@@ -35,7 +35,7 @@ FactoryGirl.define do
   end
 
   factory :device do
-    user
+    association :user, factory: :user
 
     factory :device_with_imports do
       after(:create) do |device|
@@ -45,9 +45,13 @@ FactoryGirl.define do
   end
 
   factory :import do
-    user
-    device
+    association :user, factory: :user
+    association :device, factory: :device
     import_file { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'files', 'test.xml'), 'text/xml') }
+  end
+
+  factory :examination do
+    association :device, factory: :device
   end
 
 end
